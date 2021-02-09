@@ -17,6 +17,8 @@ class HomeViewController: BaseViewController {
     let refreshTitle = "Refreshing your drawings"
     var drawingModels = [DrawingModel]()
     
+    @IBOutlet weak var greetingLabel: UILabel!
+    
     var deviceRotation : UIDeviceOrientation = UIDeviceOrientation.portrait
     
     override func viewDidLoad() {
@@ -26,8 +28,8 @@ class HomeViewController: BaseViewController {
     func initializeEngine(){
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.font:UIFont(name: fontName, size: 14)!]
         
-        drawingsList.contentInset = UIEdgeInsets(top: 4, left: dashboardPadding, bottom: 10, right: dashboardPadding)
-        drawingsList.backgroundColor = UIColor.clear
+        drawingsList.contentInset = UIEdgeInsets(top: 12, left: dashboardPadding, bottom: 12, right: dashboardPadding)
+        //drawingsList.backgroundColor = UIColor.clear
         drawingsList.dataSource = self
         drawingsList.delegate = self
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
@@ -119,7 +121,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let kWhateverHeightYouWant : CGFloat = 260
         
-        if (deviceRotation == .portrait || deviceRotation == .portraitUpsideDown || deviceRotation == .faceUp){
+        if (deviceRotation == .portrait || deviceRotation == .portraitUpsideDown){
             let kWhateverWidthYouWant = (view.bounds.width / 2)
             return CGSize(width: kWhateverWidthYouWant, height: kWhateverHeightYouWant)
         } else {

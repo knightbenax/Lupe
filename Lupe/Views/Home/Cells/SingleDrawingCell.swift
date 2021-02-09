@@ -16,7 +16,7 @@ class  SingleDrawingCell: UICollectionViewCell {
     @IBOutlet weak var tagLabel: UILabel!
     
     func setUp(drawingModel : DrawingModel){
-        dateLabel.text = formatDateToBeauty(thisDate: drawingModel.dateModified)
+        dateLabel.text = formatDateToBeauty(thisDate: drawingModel.dateCreated)
         tagLabel.text = drawingModel.tag
         let drawingObject = Data(base64Encoded: drawingModel.drawingEntity)
         
