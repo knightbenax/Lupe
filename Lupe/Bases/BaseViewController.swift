@@ -16,10 +16,15 @@ class BaseViewController: UIViewController {
     let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .medium)
     let delegate = UIApplication.shared.delegate as! AppDelegate
     
+    var hideKeyboard = true
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        self.hideKeyboardWhenTappedArround()
+        if (hideKeyboard){
+            self.hideKeyboardWhenTappedArround()
+        }
         // Do any additional setup after loading the view.
     }
     

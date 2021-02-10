@@ -17,17 +17,51 @@ class HomeViewController: BaseViewController {
     let refreshTitle = "Refreshing your drawings"
     var drawingModels = [DrawingModel]()
     
+    @IBOutlet weak var greetingLabel: UILabel!
+    
     var deviceRotation : UIDeviceOrientation = UIDeviceOrientation.portrait
     
     override func viewDidLoad() {
         initializeEngine()
+        setGreeting()
+    }
+    
+    var morningGreetings = ["having an awesome morning?", "having a great morning?", "having a swell morning?", "having a productive morning?", "had a good night rest?"]
+    var afternoonGreetings = ["having a great day?", "having a great afternoon?", "having a swell afternoon?", "having a productive day?", "having a fantastic afternoon?", "having a fantastic day?"]
+    var eveningsGreetings = ["had a great day?", "having a great evening?", "having a good evening?", "had a productive day?", "had a fantastic day?", "having a fantastic evening?"]
+    
+    func setGreeting(){
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.locale = Locale(identifier: "en_US")
+        dateFormatterPrint.timeZone = TimeZone.current
+        dateFormatterPrint.dateFormat = "HH"
+        let hourOfDay = Int(dateFormatterPrint.string(from: Date())) ?? 0
+        
+        let firstPart = "Hope you are "
+        var finalGreeting = ""
+        
+        switch hourOfDay {
+        case 0...11:
+            let number = Int.random(in: 0..<morningGreetings.count)
+            finalGreeting = firstPart + morningGreetings[number]
+        case 12...16:
+            let number = Int.random(in: 0..<afternoonGreetings.count)
+            finalGreeting = firstPart + afternoonGreetings[number]
+        case 16...24:
+            let number = Int.random(in: 0..<eveningsGreetings.count)
+            finalGreeting = firstPart + eveningsGreetings[number]
+        default:
+            break
+        }
+        
+        greetingLabel.text = finalGreeting
     }
     
     func initializeEngine(){
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.font:UIFont(name: fontName, size: 14)!]
         
-        drawingsList.contentInset = UIEdgeInsets(top: 4, left: dashboardPadding, bottom: 10, right: dashboardPadding)
-        drawingsList.backgroundColor = UIColor.clear
+        drawingsList.contentInset = UIEdgeInsets(top: 12, left: dashboardPadding, bottom: 12, right: dashboardPadding)
+        //drawingsList.backgroundColor = UIColor.clear
         drawingsList.dataSource = self
         drawingsList.delegate = self
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
@@ -119,13 +153,19 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let kWhateverHeightYouWant : CGFloat = 260
         
-        if (deviceRotation == .portrait || deviceRotation == .portraitUpsideDown || deviceRotation == .faceUp){
-            let kWhateverWidthYouWant = (view.bounds.width / 2)
-            return CGSize(width: kWhateverWidthYouWant, height: kWhateverHeightYouWant)
-        } else {
-            let kWhateverWidthYouWant = (view.bounds.width / 4)
-            return CGSize(width: kWhateverWidthYouWant, height: kWhateverHeightYouWant)
-        }
+//        if (deviceRotation == .portrait || deviceRotation == .portraitUpsideDown){
+//            var kWhateverWidthYouWant = (collectionView.bounds.width / 4)
+//            kWhateverWidthYouWant = kWhateverWidthYouWant - (dashboardPadding / 2)
+//            return CGSize(width: kWhateverWidthYouWant, height: kWhateverHeightYouWant)
+//        } else {
+//            var kWhateverWidthYouWant = (collectionView.bounds.width / 2)
+//            kWhateverWidthYouWant = kWhateverWidthYouWant - (dashboardPadding - 2)
+//            return CGSize(width: kWhateverWidthYouWant, height: kWhateverHeightYouWant)
+//        }
+        
+        var kWhateverWidthYouWant = (collectionView.bounds.width / 4)
+        kWhateverWidthYouWant = kWhateverWidthYouWant - (dashboardPadding / 2)
+        return CGSize(width: kWhateverWidthYouWant, height: kWhateverHeightYouWant)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
