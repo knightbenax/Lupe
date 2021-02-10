@@ -104,6 +104,13 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		EF4F384025D35918006083C2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		EFD3844E25CDB5D0001F79A9 = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +180,7 @@
 		EFD3848925CE1AC5001F79A9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EF4F384025D35918006083C2 /* Settings */,
 				EFD3848C25CE1B48001F79A9 /* Home */,
 			);
 			path = Views;

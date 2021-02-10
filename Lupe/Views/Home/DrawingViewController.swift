@@ -23,6 +23,7 @@ class DrawingViewController: BaseViewController {
     
     
     override func viewDidLoad() {
+        hideKeyboard = false
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         addPKCanvasView()
@@ -33,12 +34,9 @@ class DrawingViewController: BaseViewController {
         canvas.delegate = self
         canvas.showsVerticalScrollIndicator = false
         canvas.showsHorizontalScrollIndicator = false
+        
         canvas.contentSize = CGSize(width: maxContentEdge, height: maxContentEdge)
-        canvas.minimumZoomScale = 1
-        canvas.maximumZoomScale = 100
         canvas.contentInsetAdjustmentBehavior = .never
-        //canvas.drawingPolicy = .anyInput
-        //canvas.maximumZoomScale = 100
         canvasParent.addSubview(canvas)
         canvas.tool = PKInkingTool(.pen, color: .black, width: 1)
     }
@@ -73,7 +71,7 @@ class DrawingViewController: BaseViewController {
             
             //create first name textfield
         alert.addTextField(configurationHandler: { [self](textField: UITextField!) in
-                textField.placeholder = "Write the tag here"
+            textField.placeholder = "Write the tag here"
                 textField.text = tagLabel.currentTitle
                 self.drawingTagField = textField
             })
@@ -91,7 +89,6 @@ class DrawingViewController: BaseViewController {
             let drawingObject = Data(base64Encoded: editingDrawingModel.drawingEntity)
             do {
                 try canvas.drawing = PKDrawing(data: drawingObject!)
-                print(canvas.drawing)
             } catch let error as NSError {
                 print("Couldn't load shit \(error), \(error.userInfo)")
             }
@@ -111,10 +108,7 @@ class DrawingViewController: BaseViewController {
             initToolPicker()
         }
         
-        //setMaxMinZoomScalesForCurrentBounds()
-        print("Values")
-        print(canvas.minimumZoomScale)
-        print(canvas.maximumZoomScale)
+        setMaxMinZoomScalesForCurrentBounds()
         showPicker()
     }
     
@@ -177,7 +171,7 @@ class DrawingViewController: BaseViewController {
     
     
     func updateCanvasContentSize(){
-        print("yas")
+        canvas.zoomScale = 1
         let viewportBounds = canvas.bounds
         let margin = UIEdgeInsets(top: -viewportBounds.height, left: -viewportBounds.width, bottom: -viewportBounds.height, right: -viewportBounds.width)
         
@@ -191,7 +185,7 @@ class DrawingViewController: BaseViewController {
             // consider the useful content as the (drawing + margins) + the viewport, so that the drawing is not
             // scrolled upon updating the content insets, while the user draws something
             let finalContentBounds = realContentBounds.union(viewportBounds)
-            // set the insets such a way that you can only scroll the useful content area
+            // set the insets such a way that you can only scroll the useful content area§
             canvas.contentInset = UIEdgeInsets(top: -finalContentBounds.origin.y,
                                                left: -finalContentBounds.origin.x,
                                                bottom: -(canvas.contentSize.height - finalContentBounds.maxY),
@@ -201,23 +195,8 @@ class DrawingViewController: BaseViewController {
     }
     
     private func setMaxMinZoomScalesForCurrentBounds() {
-        // calculate min/max zoomscale
-        let xScale = canvas.bounds.width / canvas.contentSize.width    // the scale needed to perfectly fit the image width-wise
-        let yScale = canvas.bounds.height / canvas.contentSize.height   // the scale needed to perfectly fit the image height-wise
-    
-        var minScale: CGFloat = 1
-        minScale = max(xScale, yScale)
-        
-        
-        let maxScale = maxScaleFromMinScale*minScale
-        
-        // don't let minScale exceed maxScale. (If the image is smaller than the screen, we don't want to force it to be zoomed.)
-        if minScale > maxScale {
-            minScale = maxScale
-        }
-        
-        canvas.maximumZoomScale = maxScale
-        canvas.minimumZoomScale = minScale * 0.999 // the multiply factor to prevent user cannot scroll page while they use this control in UIPageViewController
+        canvas.minimumZoomScale = canvas.frame.width / canvas.contentSize.width
+        canvas.maximumZoomScale = 5
     }
 }
 
