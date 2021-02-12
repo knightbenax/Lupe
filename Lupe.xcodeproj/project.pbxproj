@@ -11,6 +11,8 @@
 		EF1F80B025CE9E75005BD278 /* StoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1F80AF25CE9E75005BD278 /* StoreHelper.swift */; };
 		EF1F80B425CEA09E005BD278 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1F80B325CEA09E005BD278 /* DrawingModel.swift */; };
 		EF1F80B925CEB87A005BD278 /* SingleDrawingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1F80B825CEB87A005BD278 /* SingleDrawingCell.swift */; };
+		EF9F7A7225D4AB390059C086 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9F7A7125D4AB390059C086 /* SearchView.swift */; };
+		EF9F7A7C25D5C4040059C086 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9F7A7B25D5C4040059C086 /* CanvasView.swift */; };
 		EFD3845B25CDB5D0001F79A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3845A25CDB5D0001F79A9 /* AppDelegate.swift */; };
 		EFD3845D25CDB5D0001F79A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3845C25CDB5D0001F79A9 /* SceneDelegate.swift */; };
 		EFD3845F25CDB5D0001F79A9 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3845E25CDB5D0001F79A9 /* DrawingViewController.swift */; };
@@ -36,6 +38,8 @@
 		EF1F80AF25CE9E75005BD278 /* StoreHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreHelper.swift; sourceTree = "<group>"; };
 		EF1F80B325CEA09E005BD278 /* DrawingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingModel.swift; sourceTree = "<group>"; };
 		EF1F80B825CEB87A005BD278 /* SingleDrawingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDrawingCell.swift; sourceTree = "<group>"; };
+		EF9F7A7125D4AB390059C086 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		EF9F7A7B25D5C4040059C086 /* CanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		EFD3845725CDB5D0001F79A9 /* Lupe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lupe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD3845A25CDB5D0001F79A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFD3845C25CDB5D0001F79A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +115,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		EF9F7A7025D4AAFE0059C086 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				EF9F7A7125D4AB390059C086 /* SearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		EFD3844E25CDB5D0001F79A9 = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +192,7 @@
 		EFD3848925CE1AC5001F79A9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EF9F7A7025D4AAFE0059C086 /* Search */,
 				EF4F384025D35918006083C2 /* Settings */,
 				EFD3848C25CE1B48001F79A9 /* Home */,
 			);
@@ -208,6 +221,7 @@
 		EFD3849025CE8DC5001F79A9 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				EF9F7A7B25D5C4040059C086 /* CanvasView.swift */,
 				EFD3849225CE8E14001F79A9 /* UIShadowView.swift */,
 			);
 			path = CustomViews;
@@ -334,6 +348,7 @@
 			files = (
 				EFD3847625CDCABD001F79A9 /* BaseViewController.swift in Sources */,
 				EF1F80B425CEA09E005BD278 /* DrawingModel.swift in Sources */,
+				EF9F7A7C25D5C4040059C086 /* CanvasView.swift in Sources */,
 				EF1F80B025CE9E75005BD278 /* StoreHelper.swift in Sources */,
 				EFD3845F25CDB5D0001F79A9 /* DrawingViewController.swift in Sources */,
 				EFD3845B25CDB5D0001F79A9 /* AppDelegate.swift in Sources */,
@@ -342,6 +357,7 @@
 				EFD3845D25CDB5D0001F79A9 /* SceneDelegate.swift in Sources */,
 				EFD3846525CDB5D0001F79A9 /* Lupe.xcdatamodeld in Sources */,
 				EFD3848E25CE1B87001F79A9 /* HomeViewController.swift in Sources */,
+				EF9F7A7225D4AB390059C086 /* SearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

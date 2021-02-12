@@ -12,15 +12,13 @@ class DrawingViewController: BaseViewController {
     
     fileprivate let maxContentEdge = CGFloat(500000)
     var new_canvas = true
-    var maxScaleFromMinScale: CGFloat = 3.0
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var canvasParent: UIView!
-    var toolPicker = PKToolPicker.init()
+    var toolPicker = PKToolPicker()
     var canvas : PKCanvasView!
     var editingDrawingModel : DrawingModel!
     @IBOutlet weak var tagLabel: UIButton!
-    
     
     override func viewDidLoad() {
         hideKeyboard = false
@@ -34,18 +32,26 @@ class DrawingViewController: BaseViewController {
         canvas.delegate = self
         canvas.showsVerticalScrollIndicator = false
         canvas.showsHorizontalScrollIndicator = false
+        canvas.minimumZoomScale = 0.4
+        canvas.maximumZoomScale = 8
+        canvas.zoomScale = 1
         
-        canvas.contentSize = CGSize(width: maxContentEdge, height: maxContentEdge)
-        canvas.contentInsetAdjustmentBehavior = .never
         canvasParent.addSubview(canvas)
+        canvas.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            canvas.topAnchor.constraint(equalTo: canvasParent.topAnchor),
+            canvas.leadingAnchor.constraint(equalTo: canvasParent.leadingAnchor),
+            canvas.bottomAnchor.constraint(equalTo: canvasParent.bottomAnchor),
+            canvas.trailingAnchor.constraint(equalTo: canvasParent.trailingAnchor)
+        ])
+        
+        canvas.contentInsetAdjustmentBehavior = .never
+        canvas.contentSize = CGSize(width: maxContentEdge, height: maxContentEdge)
         canvas.tool = PKInkingTool(.pen, color: .black, width: 1)
     }
+
     
-//    func listenForPencilTaps(){
-//        let interaction = UIPencilInteraction()
-//        interaction.delegate = self
-//        view.addInteraction(interaction)
-//    }
     @IBAction func showDrawingTagForm(_ sender: Any) {
         displayForm(message: "Tag this drawing e.g Ideas💡")
     }
@@ -62,7 +68,6 @@ class DrawingViewController: BaseViewController {
             if (drawingTagField.text != ""){
                 tagLabel.setTitle(drawingTagField.text, for: .normal)
             }
-            //validation logic goes here
         }
             
             //add button to alert
@@ -107,9 +112,19 @@ class DrawingViewController: BaseViewController {
             first_time_load = true
             initToolPicker()
         }
-        
-        setMaxMinZoomScalesForCurrentBounds()
         showPicker()
+    }
+    
+    private var haveScrolledToInitialOffset = false
+    
+    private func scrollToInitialContentOffsetIfNecessary() {
+        if !haveScrolledToInitialOffset {
+            let canvasView = canvas!
+            let centerOffsetX = (canvasView.contentSize.width - canvasView.frame.width) / 2
+            let centerOffsetY = (canvasView.contentSize.height - canvasView.frame.height) / 2
+            canvasView.contentOffset = CGPoint(x: centerOffsetX, y: centerOffsetY)
+            haveScrolledToInitialOffset = true
+        }
     }
     
     @IBAction func goBackHome(_ sender: Any) {
@@ -154,7 +169,6 @@ class DrawingViewController: BaseViewController {
     
     func showPicker(){
         canvas.becomeFirstResponder()
-        
     }
     
     @IBOutlet weak var canvasLockButton: UIButton!
@@ -171,44 +185,51 @@ class DrawingViewController: BaseViewController {
     
     
     func updateCanvasContentSize(){
-        canvas.zoomScale = 1
         let viewportBounds = canvas.bounds
-        let margin = UIEdgeInsets(top: -viewportBounds.height, left: -viewportBounds.width, bottom: -viewportBounds.height, right: -viewportBounds.width)
-        
-        //no drawing
-        if (canvas.drawing.bounds.size == .zero){
-            let leftInset = (canvas.contentSize.width - viewportBounds.width)/2
-            let topInset = (canvas.contentSize.height - viewportBounds.height)/2
-            canvas.contentInset = UIEdgeInsets(top: -topInset, left: -leftInset, bottom: -topInset, right: -leftInset)
-        } else {
-            let realContentBounds = canvas.drawing.bounds.inset(by: margin)
-            // consider the useful content as the (drawing + margins) + the viewport, so that the drawing is not
-            // scrolled upon updating the content insets, while the user draws something
-            let finalContentBounds = realContentBounds.union(viewportBounds)
-            // set the insets such a way that you can only scroll the useful content area§
-            canvas.contentInset = UIEdgeInsets(top: -finalContentBounds.origin.y,
-                                               left: -finalContentBounds.origin.x,
-                                               bottom: -(canvas.contentSize.height - finalContentBounds.maxY),
-                                               right: -(canvas.contentSize.width - finalContentBounds.maxX))
-        }
-        return
+
+                // no drawing
+                if canvas.drawing.bounds.size == .zero {
+                    let leftInset = (canvas.contentSize.width - viewportBounds.width)/2
+                    let topInset = (canvas.contentSize.height - viewportBounds.height)/2
+                    canvas.contentOffset = CGPoint(x: leftInset, y: topInset)
+                } else {
+                    //let realContentBounds = canvas.drawing.bounds.inset(by: margin)
+                    let realContentBounds = CGRect(x: canvas.drawing.bounds.origin.x,
+                                                   y: canvas.drawing.bounds.origin.y,
+                                                   width: canvas.drawing.bounds.width,
+                                                   height: canvas.drawing.bounds.height)
+
+                    // consider the useful content as the (drawing + margins) + the viewport, so that the drawing is not
+                    // scrolled upon updating the content insets, while the user draws something
+                    let finalContentBounds = realContentBounds.union(viewportBounds)
+                    canvas.contentOffset = CGPoint(x: -finalContentBounds.origin.x, y: -finalContentBounds.origin.y + 100)
+                }
+                return
     }
     
-    private func setMaxMinZoomScalesForCurrentBounds() {
-        canvas.minimumZoomScale = canvas.frame.width / canvas.contentSize.width
-        canvas.maximumZoomScale = 5
-    }
 }
 
 extension DrawingViewController: PKCanvasViewDelegate{
     
     func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-        updateCanvasContentSize()
+        //updateCanvasContentSize()
+    }
+
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+    }
+
+    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        return false
     }
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return canvas
-    }
+//    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+//        return canvas
+//    }
 }
 
 
