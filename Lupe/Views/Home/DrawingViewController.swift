@@ -7,18 +7,23 @@
 
 import UIKit
 import PencilKit
+import PDFGenerator
 
 class DrawingViewController: BaseViewController {
     
     fileprivate let maxContentEdge = CGFloat(500000)
     var new_canvas = true
-
+    @IBOutlet weak var shareButton: UIButton!
+    
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var canvasParent: UIView!
     var toolPicker = PKToolPicker()
     var canvas : PKCanvasView!
     var editingDrawingModel : DrawingModel!
     @IBOutlet weak var tagLabel: UIButton!
+    
+    let gridView = GridView()
+    var exportingCanvas = false
     
     override func viewDidLoad() {
         hideKeyboard = false
@@ -35,8 +40,11 @@ class DrawingViewController: BaseViewController {
         canvas.minimumZoomScale = 0.4
         canvas.maximumZoomScale = 8
         canvas.zoomScale = 1
-        
         canvasParent.addSubview(canvas)
+        print("Count")
+        print(canvasParent.subviews.count)
+        print(canvas.subviews.count)
+        print(canvas.subviews)
         canvas.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -49,8 +57,35 @@ class DrawingViewController: BaseViewController {
         canvas.contentInsetAdjustmentBehavior = .never
         canvas.contentSize = CGSize(width: maxContentEdge, height: maxContentEdge)
         canvas.tool = PKInkingTool(.pen, color: .black, width: 1)
+        
     }
+    
+    func formatDateToBeauty(thisDate: Date) -> String{
+        let dateFormatterPrint = DateFormatter()
+        //dateFormatterPrint.locale = Locale(identifier: "en_US")
+        dateFormatterPrint.timeZone = TimeZone.current
+        dateFormatterPrint.dateFormat = "MMddyy_hh_mm"
+        return dateFormatterPrint.string(from: thisDate)
+    }
+    
+    var canvasToPrint : PKCanvasView!
 
+    @IBAction func shareSaveDrawing(_ sender: Any) {
+        let drawing = canvas.drawing.bounds
+        
+        let drawingWidth = drawing.width + 40
+        let drawingHeight = drawing.height + 40
+        canvasToPrint = PKCanvasView(frame: CGRect(x: drawing.origin.x, y: drawing.origin.y, width: drawingWidth, height: drawingHeight))
+        canvasToPrint.delegate = self
+        canvasToPrint.contentSize = CGSize(width: drawingWidth, height: drawingHeight)
+        canvasToPrint.drawing = canvas.drawing
+        canvasToPrint.drawing.transform(using: CGAffineTransform(translationX: -drawing.origin.x + 30, y: -drawing.origin.y + 30))
+        canvasToPrint.backgroundColor = .white
+        print("bounds")
+        print(canvasToPrint.drawing.bounds)
+        print(canvasToPrint.bounds)
+        exportingCanvas = true
+    }
     
     @IBAction func showDrawingTagForm(_ sender: Any) {
         displayForm(message: "Tag this drawing e.g Ideas💡")
@@ -88,16 +123,28 @@ class DrawingViewController: BaseViewController {
             self.present(alert, animated: true, completion: nil)
         }
     
+    func setZoomScale(){
+        let zoomScale = min(canvas.frame.size.width / canvas.drawing.bounds.size.width, canvas.frame.size.height / canvas.drawing.bounds.size.height)
+
+        if (zoomScale < canvas.minimumZoomScale){
+            canvas.zoomScale = canvas.minimumZoomScale
+        } else {
+            canvas.zoomScale = 1
+        }
+    }
+    
     func loadCanvasData(){
         if (!new_canvas){
             tagLabel.setTitle(editingDrawingModel.tag, for: .normal)
             let drawingObject = Data(base64Encoded: editingDrawingModel.drawingEntity)
             do {
                 try canvas.drawing = PKDrawing(data: drawingObject!)
+               setZoomScale()
             } catch let error as NSError {
                 print("Couldn't load shit \(error), \(error.userInfo)")
             }
         } else {
+            canvas.zoomScale = 1
             tagLabel.setTitle("unsorted", for: .normal)
         }
     }
@@ -112,6 +159,7 @@ class DrawingViewController: BaseViewController {
             first_time_load = true
             initToolPicker()
         }
+        
         showPicker()
     }
     
@@ -130,6 +178,11 @@ class DrawingViewController: BaseViewController {
     @IBAction func goBackHome(_ sender: Any) {
         saveDrawing()
         navigationController?.popToRootViewController(animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        saveDrawing()
     }
     
     @IBAction func clearDrawing(_ sender: Any) {
@@ -202,7 +255,7 @@ class DrawingViewController: BaseViewController {
                     // consider the useful content as the (drawing + margins) + the viewport, so that the drawing is not
                     // scrolled upon updating the content insets, while the user draws something
                     let finalContentBounds = realContentBounds.union(viewportBounds)
-                    canvas.contentOffset = CGPoint(x: -finalContentBounds.origin.x, y: -finalContentBounds.origin.y + 100)
+                    canvas.contentOffset = CGPoint(x: finalContentBounds.origin.x, y: finalContentBounds.origin.y)
                 }
                 return
     }
@@ -213,6 +266,30 @@ extension DrawingViewController: PKCanvasViewDelegate{
     
     func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
         //updateCanvasContentSize()
+    }
+    
+    func canvasViewDidFinishRendering(_ canvasView: PKCanvasView) {
+        if (exportingCanvas){
+            DispatchQueue.main.async { [self] in
+                let dateInString = formatDateToBeauty(thisDate: Date()).replacingOccurrences(of: " ", with: "_")
+                var name = (tagLabel.currentTitle?.stringByRemovingEmoji())!
+                name = name.replacingOccurrences(of: " ", with: "_") + dateInString
+                name = name.lowercased()
+                
+                let dst = URL(fileURLWithPath: NSTemporaryDirectory().appending("lupe_" + name + ".pdf"))
+                    // outputs as Data
+                    do {
+                        let data = try PDFGenerator.generated(by: canvasToPrint)
+                        try data.write(to: dst, options: .atomic)
+                        let av = UIActivityViewController(activityItems: [dst], applicationActivities: nil)
+                        av.popoverPresentationController?.sourceView = shareButton
+                        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+                        exportingCanvas = false
+                    } catch (let error) {
+                        print(error)
+                    }
+            }
+        }
     }
 
     func scrollViewDidZoom(_ scrollView: UIScrollView) {

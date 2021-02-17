@@ -1,16 +1,20 @@
 PODS:
+  - PDFGenerator (3.1.0)
   - UICollectionViewLeftAlignedLayout (1.0.2)
 
 DEPENDENCIES:
+  - PDFGenerator (~> 3.1)
   - UICollectionViewLeftAlignedLayout
 
 SPEC REPOS:
   trunk:
+    - PDFGenerator
     - UICollectionViewLeftAlignedLayout
 
 SPEC CHECKSUMS:
+  PDFGenerator: 17d6bc525db0a3fcd156fbf00f9d1b8d5cc75d1e
   UICollectionViewLeftAlignedLayout: 830bf6fa5bab9f9b464f62e3384f9d2e00b3c0f6
 
-PODFILE CHECKSUM: afe86713730ce6aaa6fb45af948388aba31adb18
+PODFILE CHECKSUM: 4eb564cd7da1a3ebaab1433ea343a78a33b52a08
 
 COCOAPODS: 1.9.3

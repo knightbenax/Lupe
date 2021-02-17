@@ -87,6 +87,9 @@
                                     <color key="titleColor" systemColor="labelColor"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="regular"/>
                                 </state>
+                                <connections>
+                                    <action selector="shareSaveDrawing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4qP-h2-IMe"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eth-6l-cKw" userLabel="Clear Button">
                                 <rect key="frame" x="1134" y="30.5" width="22" height="25"/>
@@ -144,6 +147,7 @@
                         <outlet property="backButton" destination="MzJ-bi-dfD" id="idh-7k-Rdo"/>
                         <outlet property="canvasLockButton" destination="VT7-0i-Rkt" id="cqq-ML-9pZ"/>
                         <outlet property="canvasParent" destination="Nd0-eg-4y8" id="Q1d-TW-1bb"/>
+                        <outlet property="shareButton" destination="jXs-2K-v4u" id="6kp-Y0-wMy"/>
                         <outlet property="tagLabel" destination="k0D-cb-JOj" id="Cui-Fr-5bh"/>
                     </connections>
                 </viewController>
