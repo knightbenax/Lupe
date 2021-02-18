@@ -7,5 +7,6 @@ target 'Lupe' do
 
   # Pods for Lupe
 pod 'UICollectionViewLeftAlignedLayout'
+pod 'PDFGenerator', '~> 3.1'
 
 end

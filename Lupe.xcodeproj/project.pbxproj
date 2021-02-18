@@ -11,6 +11,10 @@
 		EF1F80B025CE9E75005BD278 /* StoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1F80AF25CE9E75005BD278 /* StoreHelper.swift */; };
 		EF1F80B425CEA09E005BD278 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1F80B325CEA09E005BD278 /* DrawingModel.swift */; };
 		EF1F80B925CEB87A005BD278 /* SingleDrawingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1F80B825CEB87A005BD278 /* SingleDrawingCell.swift */; };
+		EF32DBB525D6E88A0035F5A9 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF32DBB425D6E88A0035F5A9 /* GridView.swift */; };
+		EF8749C825DC99A4000C9108 /* StringemojilessStringWithSubstitution+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8749C725DC99A4000C9108 /* StringemojilessStringWithSubstitution+.swift */; };
+		EF9735D525DDE6FC00559F35 /* GridImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9735D425DDE6FC00559F35 /* GridImageView.swift */; };
+		EF9F7A7225D4AB390059C086 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9F7A7125D4AB390059C086 /* SearchView.swift */; };
 		EFD3845B25CDB5D0001F79A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3845A25CDB5D0001F79A9 /* AppDelegate.swift */; };
 		EFD3845D25CDB5D0001F79A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3845C25CDB5D0001F79A9 /* SceneDelegate.swift */; };
 		EFD3845F25CDB5D0001F79A9 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3845E25CDB5D0001F79A9 /* DrawingViewController.swift */; };
@@ -36,6 +40,10 @@
 		EF1F80AF25CE9E75005BD278 /* StoreHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreHelper.swift; sourceTree = "<group>"; };
 		EF1F80B325CEA09E005BD278 /* DrawingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingModel.swift; sourceTree = "<group>"; };
 		EF1F80B825CEB87A005BD278 /* SingleDrawingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDrawingCell.swift; sourceTree = "<group>"; };
+		EF32DBB425D6E88A0035F5A9 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		EF8749C725DC99A4000C9108 /* StringemojilessStringWithSubstitution+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringemojilessStringWithSubstitution+.swift"; sourceTree = "<group>"; };
+		EF9735D425DDE6FC00559F35 /* GridImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridImageView.swift; sourceTree = "<group>"; };
+		EF9F7A7125D4AB390059C086 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		EFD3845725CDB5D0001F79A9 /* Lupe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lupe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD3845A25CDB5D0001F79A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFD3845C25CDB5D0001F79A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +119,22 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		EF8749C625DC9971000C9108 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EF8749C725DC99A4000C9108 /* StringemojilessStringWithSubstitution+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EF9F7A7025D4AAFE0059C086 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				EF9F7A7125D4AB390059C086 /* SearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		EFD3844E25CDB5D0001F79A9 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +156,7 @@
 		EFD3845925CDB5D0001F79A9 /* Lupe */ = {
 			isa = PBXGroup;
 			children = (
+				EF8749C625DC9971000C9108 /* Extensions */,
 				EFD3848A25CE1ACE001F79A9 /* Bases */,
 				EFD3848425CE1A6B001F79A9 /* Lupe.entitlements */,
 				EFD3847425CDCAAF001F79A9 /* Core */,
@@ -180,6 +205,7 @@
 		EFD3848925CE1AC5001F79A9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EF9F7A7025D4AAFE0059C086 /* Search */,
 				EF4F384025D35918006083C2 /* Settings */,
 				EFD3848C25CE1B48001F79A9 /* Home */,
 			);
@@ -209,6 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				EFD3849225CE8E14001F79A9 /* UIShadowView.swift */,
+				EF32DBB425D6E88A0035F5A9 /* GridView.swift */,
+				EF9735D425DDE6FC00559F35 /* GridImageView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -335,13 +363,17 @@
 				EFD3847625CDCABD001F79A9 /* BaseViewController.swift in Sources */,
 				EF1F80B425CEA09E005BD278 /* DrawingModel.swift in Sources */,
 				EF1F80B025CE9E75005BD278 /* StoreHelper.swift in Sources */,
+				EF8749C825DC99A4000C9108 /* StringemojilessStringWithSubstitution+.swift in Sources */,
 				EFD3845F25CDB5D0001F79A9 /* DrawingViewController.swift in Sources */,
 				EFD3845B25CDB5D0001F79A9 /* AppDelegate.swift in Sources */,
 				EFD3849325CE8E14001F79A9 /* UIShadowView.swift in Sources */,
 				EF1F80B925CEB87A005BD278 /* SingleDrawingCell.swift in Sources */,
 				EFD3845D25CDB5D0001F79A9 /* SceneDelegate.swift in Sources */,
 				EFD3846525CDB5D0001F79A9 /* Lupe.xcdatamodeld in Sources */,
+				EF9735D525DDE6FC00559F35 /* GridImageView.swift in Sources */,
 				EFD3848E25CE1B87001F79A9 /* HomeViewController.swift in Sources */,
+				EF32DBB525D6E88A0035F5A9 /* GridView.swift in Sources */,
+				EF9F7A7225D4AB390059C086 /* SearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,7 +525,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KPGYDGPJU8;
 				INFOPLIST_FILE = Lupe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -515,7 +547,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KPGYDGPJU8;
 				INFOPLIST_FILE = Lupe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
