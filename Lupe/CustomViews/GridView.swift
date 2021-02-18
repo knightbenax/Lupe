@@ -36,7 +36,7 @@ class GridView: UIView {
     fileprivate func drawGrid()
     {
         path = UIBezierPath()
-        path.lineWidth = 5.0
+        path.lineWidth = 2.0
 
         for index in 1...Int(gridWidthMultiple) - 1
         {
@@ -46,14 +46,14 @@ class GridView: UIView {
             path.addLine(to: end)
         }
 
-        /*for index in 1...Int(gridHeightMultiple) - 1 {
+        for index in 1...Int(gridHeightMultiple) - 1 {
             let start = CGPoint(x: 0, y: CGFloat(index) * gridHeight)
             let end = CGPoint(x: bounds.width, y: CGFloat(index) * gridHeight)
             path.move(to: start)
             path.addLine(to: end)
-        }*/
+        }
         
-        self.backgroundColor = .systemBackground
+        self.backgroundColor = .red
         //Close the path.
         path.close()
 
@@ -63,11 +63,13 @@ class GridView: UIView {
     {
         drawGrid()
         
-        self.layer.borderWidth = 5
-        self.layer.borderColor = UIColor.white.cgColor
+        //self.layer.borderWidth = 5
+        //self.layer.borderColor = UIColor.white.cgColor
         
         // Specify a border (stroke) color.
         UIColor.white.setStroke()
         path.stroke()
     }
+    
+    override class var layerClass: AnyClass { return CATiledLayer.self }
 }

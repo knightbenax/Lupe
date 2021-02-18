@@ -82,6 +82,11 @@ class HomeViewController: BaseViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        if (traitCollection.horizontalSizeClass == .compact){
+            //numberOfRowsIpad = 3
+        } else {
+            //numberOfRowsIpad = 5
+        }
         drawingsList.reloadData()
     }
    

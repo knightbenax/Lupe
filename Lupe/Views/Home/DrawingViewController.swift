@@ -17,16 +17,23 @@ class DrawingViewController: BaseViewController {
     
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var canvasParent: UIView!
-    var toolPicker = PKToolPicker()
+    var toolPicker : PKToolPicker!
     var canvas : PKCanvasView!
     var editingDrawingModel : DrawingModel!
     @IBOutlet weak var tagLabel: UIButton!
     
-    let gridView = GridView()
+    var gridView = GridImageView()
     var exportingCanvas = false
     
     override func viewDidLoad() {
         hideKeyboard = false
+        if #available(iOS 14.0, *) {
+            toolPicker = PKToolPicker()
+        } else {
+            // Fallback on earlier versions
+            let window = parent?.view.window
+            toolPicker = PKToolPicker.shared(for: window!)
+        }
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         addPKCanvasView()
@@ -41,10 +48,8 @@ class DrawingViewController: BaseViewController {
         canvas.maximumZoomScale = 8
         canvas.zoomScale = 1
         canvasParent.addSubview(canvas)
-        print("Count")
-        print(canvasParent.subviews.count)
-        print(canvas.subviews.count)
-        print(canvas.subviews)
+        canvas.isOpaque = false
+        //canvas.backgroundColor = .clear
         canvas.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -56,9 +61,22 @@ class DrawingViewController: BaseViewController {
         
         canvas.contentInsetAdjustmentBehavior = .never
         canvas.contentSize = CGSize(width: maxContentEdge, height: maxContentEdge)
-        canvas.tool = PKInkingTool(.pen, color: .black, width: 1)
         
+        gridView = GridImageView(frame: CGRect(x: 0, y: 0, width: canvas.frame.width, height: canvas.frame.height))
+        canvas.insertSubview(gridView, at: 0)
+        canvas.tool = PKInkingTool(.pen, color: .black, width: 1)
+        gridView.backgroundColor = UIColor(patternImage: UIImage(named: "grid")!)
     }
+    
+    
+//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+//        if (traitCollection.userInterfaceStyle == .light){
+//            gridView.backgroundColor = UIColor(patternImage: UIImage(named: "grid")!)
+//        } else {
+//            gridView.backgroundColor = UIColor(patternImage: UIImage(named: "grid_black")!)
+//        }
+//        super.traitCollectionDidChange(previousTraitCollection)
+//    }
     
     func formatDateToBeauty(thisDate: Date) -> String{
         let dateFormatterPrint = DateFormatter()
@@ -81,9 +99,6 @@ class DrawingViewController: BaseViewController {
         canvasToPrint.drawing = canvas.drawing
         canvasToPrint.drawing.transform(using: CGAffineTransform(translationX: -drawing.origin.x + 30, y: -drawing.origin.y + 30))
         canvasToPrint.backgroundColor = .white
-        print("bounds")
-        print(canvasToPrint.drawing.bounds)
-        print(canvasToPrint.bounds)
         exportingCanvas = true
     }
     
@@ -94,22 +109,18 @@ class DrawingViewController: BaseViewController {
     var drawingTagField : UITextField!
     
     func displayForm(message:String){
-        //create alert
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        //create cancel button
         let cancelAction = UIAlertAction(title: "Cancel" , style: .cancel)
-        //create save button
         let saveAction = UIAlertAction(title: "Save", style: .default) { [self] (action) -> Void in
             if (drawingTagField.text != ""){
                 tagLabel.setTitle(drawingTagField.text, for: .normal)
             }
         }
             
-            //add button to alert
-            alert.addAction(cancelAction)
-            alert.addAction(saveAction)
-            
-            //create first name textfield
+        alert.addAction(cancelAction)
+        alert.addAction(saveAction)
+        
+        //create first name textfield
         alert.addTextField(configurationHandler: { [self](textField: UITextField!) in
             textField.placeholder = "Write the tag here"
                 textField.text = tagLabel.currentTitle
@@ -159,7 +170,6 @@ class DrawingViewController: BaseViewController {
             first_time_load = true
             initToolPicker()
         }
-        
         showPicker()
     }
     
@@ -182,7 +192,7 @@ class DrawingViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        saveDrawing()
+        //saveDrawing()
     }
     
     @IBAction func clearDrawing(_ sender: Any) {
@@ -238,6 +248,9 @@ class DrawingViewController: BaseViewController {
     
     
     func updateCanvasContentSize(){
+        gridView.frame.size = canvas.contentSize
+        
+        print(gridView.frame)
         let viewportBounds = canvas.bounds
 
                 // no drawing
@@ -293,28 +306,18 @@ extension DrawingViewController: PKCanvasViewDelegate{
     }
 
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+        //view.didZoom(to: canvasView.zoomScale)
     }
 
     func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         return false
     }
     
-//    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-//        return canvas
-//    }
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return gridView
+    }
+
 }
-
-
-//extension DrawingViewController: UIPencilInteractionDelegate{
-//    func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
-//        print("yes, did double tap")
-//    }
-//}
 
 
 //let context = LAContext()
