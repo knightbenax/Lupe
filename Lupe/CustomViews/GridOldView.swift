@@ -1,17 +1,15 @@
 //
-//  GridImageView.swift
+//  GridView.swift
 //  Lupe
 //
-//  Created by Bezaleel Ashefor on 18/02/2021.
+//  Created by Bezaleel Ashefor on 12/02/2021.
 //
 
 import Foundation
 import UIKit
+import PencilKit
 
-class GridImageView: UIView {
-    
-
-//    override class var layerClass: AnyClass { return CATiledLayer.self }
+class GridOldView: UIView {
     
     private var path = UIBezierPath()
     fileprivate var gridWidthMultiple: CGFloat
@@ -71,6 +69,4 @@ class GridImageView: UIView {
         UIColor.white.setStroke()
         path.stroke()
     }
-    
-
 }

@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		AB466ABC913FA5BFA23FCCBD /* Pods_Lupe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE229C1BE0C7F536303B073 /* Pods_Lupe.framework */; };
+		EF0B879526397F6D00462874 /* LupeCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B879426397F6D00462874 /* LupeCanvasView.swift */; };
 		EF1F80B025CE9E75005BD278 /* StoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1F80AF25CE9E75005BD278 /* StoreHelper.swift */; };
 		EF1F80B425CEA09E005BD278 /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1F80B325CEA09E005BD278 /* DrawingModel.swift */; };
 		EF1F80B925CEB87A005BD278 /* SingleDrawingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1F80B825CEB87A005BD278 /* SingleDrawingCell.swift */; };
-		EF32DBB525D6E88A0035F5A9 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF32DBB425D6E88A0035F5A9 /* GridView.swift */; };
-		EF8749C825DC99A4000C9108 /* StringemojilessStringWithSubstitution+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8749C725DC99A4000C9108 /* StringemojilessStringWithSubstitution+.swift */; };
+		EF32DBB525D6E88A0035F5A9 /* GridOldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF32DBB425D6E88A0035F5A9 /* GridOldView.swift */; };
+		EF7131D825DF35DE007731EA /* UIImage+scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7131D725DF35DE007731EA /* UIImage+scale.swift */; };
+		EF8749C825DC99A4000C9108 /* String+emojilessStringWithSubstitution+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8749C725DC99A4000C9108 /* String+emojilessStringWithSubstitution+.swift */; };
 		EF9735D525DDE6FC00559F35 /* GridImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9735D425DDE6FC00559F35 /* GridImageView.swift */; };
 		EF9F7A7225D4AB390059C086 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9F7A7125D4AB390059C086 /* SearchView.swift */; };
+		EFA9251E25E06CA0006E0125 /* GridTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9251C25E06CA0006E0125 /* GridTile.swift */; };
+		EFA9251F25E06CA0006E0125 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9251D25E06CA0006E0125 /* GridView.swift */; };
 		EFD3845B25CDB5D0001F79A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3845A25CDB5D0001F79A9 /* AppDelegate.swift */; };
 		EFD3845D25CDB5D0001F79A9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3845C25CDB5D0001F79A9 /* SceneDelegate.swift */; };
 		EFD3845F25CDB5D0001F79A9 /* DrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD3845E25CDB5D0001F79A9 /* DrawingViewController.swift */; };
@@ -37,13 +41,17 @@
 		214206675C97C64B0AB21154 /* Pods-Lupe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lupe.debug.xcconfig"; path = "Target Support Files/Pods-Lupe/Pods-Lupe.debug.xcconfig"; sourceTree = "<group>"; };
 		7D0E8642025C19A09BE77AB0 /* Pods-Lupe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lupe.release.xcconfig"; path = "Target Support Files/Pods-Lupe/Pods-Lupe.release.xcconfig"; sourceTree = "<group>"; };
 		8BE229C1BE0C7F536303B073 /* Pods_Lupe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lupe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF0B879426397F6D00462874 /* LupeCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LupeCanvasView.swift; sourceTree = "<group>"; };
 		EF1F80AF25CE9E75005BD278 /* StoreHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreHelper.swift; sourceTree = "<group>"; };
 		EF1F80B325CEA09E005BD278 /* DrawingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingModel.swift; sourceTree = "<group>"; };
 		EF1F80B825CEB87A005BD278 /* SingleDrawingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDrawingCell.swift; sourceTree = "<group>"; };
-		EF32DBB425D6E88A0035F5A9 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
-		EF8749C725DC99A4000C9108 /* StringemojilessStringWithSubstitution+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringemojilessStringWithSubstitution+.swift"; sourceTree = "<group>"; };
+		EF32DBB425D6E88A0035F5A9 /* GridOldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridOldView.swift; sourceTree = "<group>"; };
+		EF7131D725DF35DE007731EA /* UIImage+scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+scale.swift"; sourceTree = "<group>"; };
+		EF8749C725DC99A4000C9108 /* String+emojilessStringWithSubstitution+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+emojilessStringWithSubstitution+.swift"; sourceTree = "<group>"; };
 		EF9735D425DDE6FC00559F35 /* GridImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridImageView.swift; sourceTree = "<group>"; };
 		EF9F7A7125D4AB390059C086 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		EFA9251C25E06CA0006E0125 /* GridTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTile.swift; sourceTree = "<group>"; };
+		EFA9251D25E06CA0006E0125 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		EFD3845725CDB5D0001F79A9 /* Lupe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lupe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD3845A25CDB5D0001F79A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFD3845C25CDB5D0001F79A9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,7 +130,8 @@
 		EF8749C625DC9971000C9108 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				EF8749C725DC99A4000C9108 /* StringemojilessStringWithSubstitution+.swift */,
+				EF8749C725DC99A4000C9108 /* String+emojilessStringWithSubstitution+.swift */,
+				EF7131D725DF35DE007731EA /* UIImage+scale.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -235,8 +244,11 @@
 			isa = PBXGroup;
 			children = (
 				EFD3849225CE8E14001F79A9 /* UIShadowView.swift */,
-				EF32DBB425D6E88A0035F5A9 /* GridView.swift */,
+				EFA9251C25E06CA0006E0125 /* GridTile.swift */,
+				EFA9251D25E06CA0006E0125 /* GridView.swift */,
+				EF32DBB425D6E88A0035F5A9 /* GridOldView.swift */,
 				EF9735D425DDE6FC00559F35 /* GridImageView.swift */,
+				EF0B879426397F6D00462874 /* LupeCanvasView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -361,18 +373,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFD3847625CDCABD001F79A9 /* BaseViewController.swift in Sources */,
+				EF7131D825DF35DE007731EA /* UIImage+scale.swift in Sources */,
+				EF0B879526397F6D00462874 /* LupeCanvasView.swift in Sources */,
 				EF1F80B425CEA09E005BD278 /* DrawingModel.swift in Sources */,
 				EF1F80B025CE9E75005BD278 /* StoreHelper.swift in Sources */,
-				EF8749C825DC99A4000C9108 /* StringemojilessStringWithSubstitution+.swift in Sources */,
+				EF8749C825DC99A4000C9108 /* String+emojilessStringWithSubstitution+.swift in Sources */,
 				EFD3845F25CDB5D0001F79A9 /* DrawingViewController.swift in Sources */,
 				EFD3845B25CDB5D0001F79A9 /* AppDelegate.swift in Sources */,
 				EFD3849325CE8E14001F79A9 /* UIShadowView.swift in Sources */,
 				EF1F80B925CEB87A005BD278 /* SingleDrawingCell.swift in Sources */,
 				EFD3845D25CDB5D0001F79A9 /* SceneDelegate.swift in Sources */,
+				EFA9251F25E06CA0006E0125 /* GridView.swift in Sources */,
 				EFD3846525CDB5D0001F79A9 /* Lupe.xcdatamodeld in Sources */,
 				EF9735D525DDE6FC00559F35 /* GridImageView.swift in Sources */,
 				EFD3848E25CE1B87001F79A9 /* HomeViewController.swift in Sources */,
-				EF32DBB525D6E88A0035F5A9 /* GridView.swift in Sources */,
+				EFA9251E25E06CA0006E0125 /* GridTile.swift in Sources */,
+				EF32DBB525D6E88A0035F5A9 /* GridOldView.swift in Sources */,
 				EF9F7A7225D4AB390059C086 /* SearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
