@@ -15,6 +15,7 @@
 		EF32DBB525D6E88A0035F5A9 /* GridOldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF32DBB425D6E88A0035F5A9 /* GridOldView.swift */; };
 		EF7131D825DF35DE007731EA /* UIImage+scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7131D725DF35DE007731EA /* UIImage+scale.swift */; };
 		EF8749C825DC99A4000C9108 /* String+emojilessStringWithSubstitution+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8749C725DC99A4000C9108 /* String+emojilessStringWithSubstitution+.swift */; };
+		EF933F10271C1291004CE48E /* NewDrawingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF933F0F271C1291004CE48E /* NewDrawingController.swift */; };
 		EF9735D525DDE6FC00559F35 /* GridImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9735D425DDE6FC00559F35 /* GridImageView.swift */; };
 		EF9F7A7225D4AB390059C086 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9F7A7125D4AB390059C086 /* SearchView.swift */; };
 		EFA9251E25E06CA0006E0125 /* GridTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA9251C25E06CA0006E0125 /* GridTile.swift */; };
@@ -48,6 +49,7 @@
 		EF32DBB425D6E88A0035F5A9 /* GridOldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridOldView.swift; sourceTree = "<group>"; };
 		EF7131D725DF35DE007731EA /* UIImage+scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+scale.swift"; sourceTree = "<group>"; };
 		EF8749C725DC99A4000C9108 /* String+emojilessStringWithSubstitution+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+emojilessStringWithSubstitution+.swift"; sourceTree = "<group>"; };
+		EF933F0F271C1291004CE48E /* NewDrawingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDrawingController.swift; sourceTree = "<group>"; };
 		EF9735D425DDE6FC00559F35 /* GridImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridImageView.swift; sourceTree = "<group>"; };
 		EF9F7A7125D4AB390059C086 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		EFA9251C25E06CA0006E0125 /* GridTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTile.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				EFD3845E25CDB5D0001F79A9 /* DrawingViewController.swift */,
 				EFD3846025CDB5D0001F79A9 /* Main.storyboard */,
 				EFD3848D25CE1B87001F79A9 /* HomeViewController.swift */,
+				EF933F0F271C1291004CE48E /* NewDrawingController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				EF9735D525DDE6FC00559F35 /* GridImageView.swift in Sources */,
 				EFD3848E25CE1B87001F79A9 /* HomeViewController.swift in Sources */,
 				EFA9251E25E06CA0006E0125 /* GridTile.swift in Sources */,
+				EF933F10271C1291004CE48E /* NewDrawingController.swift in Sources */,
 				EF32DBB525D6E88A0035F5A9 /* GridOldView.swift in Sources */,
 				EF9F7A7225D4AB390059C086 /* SearchView.swift in Sources */,
 			);
