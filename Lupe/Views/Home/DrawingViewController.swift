@@ -18,12 +18,15 @@ class DrawingViewController: BaseViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var canvasParent: UIView!
     var toolPicker : PKToolPicker!
-    var canvas : PKCanvasView!
+    var canvas : LupeCanvasView!
     var editingDrawingModel : DrawingModel!
     @IBOutlet weak var tagLabel: UIButton!
     
-    var gridView = GridImageView()
+    var gridView = UIView()
     var exportingCanvas = false
+    let defaultGrid = UIImage(named: "grid")!
+    
+    var canvasToPrint : PKCanvasView!
     
     override func viewDidLoad() {
         hideKeyboard = false
@@ -37,19 +40,23 @@ class DrawingViewController: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         addPKCanvasView()
+        UIApplication.shared.isIdleTimerDisabled = true
     }
-
+    
+    //    override var prefersStatusBarHidden: Bool {
+    //        return true
+    //    }
+    
     func addPKCanvasView(){
-        canvas = PKCanvasView(frame: canvasParent.frame)
+        canvas = LupeCanvasView(frame: canvasParent.frame)
         canvas.delegate = self
         canvas.showsVerticalScrollIndicator = false
         canvas.showsHorizontalScrollIndicator = false
         canvas.minimumZoomScale = 0.4
-        canvas.maximumZoomScale = 8
-        canvas.zoomScale = 1
+        canvas.maximumZoomScale = 4
+        canvas.zoomScale = 0.5
         canvasParent.addSubview(canvas)
         canvas.isOpaque = false
-        //canvas.backgroundColor = .clear
         canvas.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -59,35 +66,15 @@ class DrawingViewController: BaseViewController {
             canvas.trailingAnchor.constraint(equalTo: canvasParent.trailingAnchor)
         ])
         
+        gridView = UIView(frame: .zero)
+        canvas.addSubview(gridView)
+        canvas.sendSubviewToBack(gridView)
+        gridView.translatesAutoresizingMaskIntoConstraints = false
         canvas.contentInsetAdjustmentBehavior = .never
         canvas.contentSize = CGSize(width: maxContentEdge, height: maxContentEdge)
-        
-        gridView = GridImageView(frame: CGRect(x: 0, y: 0, width: canvas.frame.width, height: canvas.frame.height))
-        canvas.insertSubview(gridView, at: 0)
         canvas.tool = PKInkingTool(.pen, color: .black, width: 1)
-        gridView.backgroundColor = UIColor(patternImage: UIImage(named: "grid")!)
     }
     
-    
-//    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//        if (traitCollection.userInterfaceStyle == .light){
-//            gridView.backgroundColor = UIColor(patternImage: UIImage(named: "grid")!)
-//        } else {
-//            gridView.backgroundColor = UIColor(patternImage: UIImage(named: "grid_black")!)
-//        }
-//        super.traitCollectionDidChange(previousTraitCollection)
-//    }
-    
-    func formatDateToBeauty(thisDate: Date) -> String{
-        let dateFormatterPrint = DateFormatter()
-        //dateFormatterPrint.locale = Locale(identifier: "en_US")
-        dateFormatterPrint.timeZone = TimeZone.current
-        dateFormatterPrint.dateFormat = "MMddyy_hh_mm"
-        return dateFormatterPrint.string(from: thisDate)
-    }
-    
-    var canvasToPrint : PKCanvasView!
-
     @IBAction func shareSaveDrawing(_ sender: Any) {
         let drawing = canvas.drawing.bounds
         
@@ -116,48 +103,22 @@ class DrawingViewController: BaseViewController {
                 tagLabel.setTitle(drawingTagField.text, for: .normal)
             }
         }
-            
+        
         alert.addAction(cancelAction)
         alert.addAction(saveAction)
         
         //create first name textfield
         alert.addTextField(configurationHandler: { [self](textField: UITextField!) in
             textField.placeholder = "Write the tag here"
-                textField.text = tagLabel.currentTitle
-                self.drawingTagField = textField
-            })
-            
+            textField.text = tagLabel.currentTitle
+            self.drawingTagField = textField
+        })
+        
         alert.popoverPresentationController?.sourceView = tagLabel
         alert.popoverPresentationController?.sourceRect = tagLabel.bounds
         alert.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
         
-            self.present(alert, animated: true, completion: nil)
-        }
-    
-    func setZoomScale(){
-        let zoomScale = min(canvas.frame.size.width / canvas.drawing.bounds.size.width, canvas.frame.size.height / canvas.drawing.bounds.size.height)
-
-        if (zoomScale < canvas.minimumZoomScale){
-            canvas.zoomScale = canvas.minimumZoomScale
-        } else {
-            canvas.zoomScale = 1
-        }
-    }
-    
-    func loadCanvasData(){
-        if (!new_canvas){
-            tagLabel.setTitle(editingDrawingModel.tag, for: .normal)
-            let drawingObject = Data(base64Encoded: editingDrawingModel.drawingEntity)
-            do {
-                try canvas.drawing = PKDrawing(data: drawingObject!)
-               setZoomScale()
-            } catch let error as NSError {
-                print("Couldn't load shit \(error), \(error.userInfo)")
-            }
-        } else {
-            canvas.zoomScale = 1
-            tagLabel.setTitle("unsorted", for: .normal)
-        }
+        self.present(alert, animated: true, completion: nil)
     }
     
     var first_time_load = false
@@ -173,26 +134,133 @@ class DrawingViewController: BaseViewController {
         showPicker()
     }
     
-    private var haveScrolledToInitialOffset = false
-    
-    private func scrollToInitialContentOffsetIfNecessary() {
-        if !haveScrolledToInitialOffset {
-            let canvasView = canvas!
-            let centerOffsetX = (canvasView.contentSize.width - canvasView.frame.width) / 2
-            let centerOffsetY = (canvasView.contentSize.height - canvasView.frame.height) / 2
-            canvasView.contentOffset = CGPoint(x: centerOffsetX, y: centerOffsetY)
-            haveScrolledToInitialOffset = true
+    func loadCanvasData(){
+        if (!new_canvas){
+            tagLabel.setTitle(editingDrawingModel.tag, for: .normal)
+            let drawingObject = Data(base64Encoded: editingDrawingModel.drawingEntity)
+            do {
+                try canvas.drawing = PKDrawing(data: drawingObject!)
+                setZoomScale()
+            } catch let error as NSError {
+                print("Couldn't load shit \(error), \(error.userInfo)")
+            }
+        } else {
+            canvas.zoomScale = 1
+            tagLabel.setTitle("unsorted", for: .normal)
         }
     }
     
+    func setZoomScale(){
+        print("Drawing Bounds \(canvas.drawing.bounds)")
+        let imageWidth = canvas.drawing.bounds.width
+        let imageHeight = canvas.drawing.bounds.height
+        let targetWidth = canvas.bounds.width
+        let targetHeight =  canvas.bounds.height
+        
+        let imageAspectRatio = imageWidth/imageHeight
+        let targetAspectRatio = targetWidth/targetHeight
+        
+        var adjustedWidth = targetWidth
+        var adjustedHeight = targetHeight
+        
+        if (imageAspectRatio > targetAspectRatio){
+            adjustedHeight = targetWidth / imageAspectRatio
+        } else if (imageAspectRatio < targetAspectRatio){
+            adjustedWidth = targetHeight * imageAspectRatio
+        }
+        
+        print("Drawing Bounds: Canvas \(adjustedWidth) \(adjustedHeight)")
+        print("Drawing Bounds: Drawing \(canvas.bounds.width) \(canvas.bounds.height)")
+        
+        let vertScale = adjustedHeight/canvas.contentSize.height
+        let horiScale = adjustedWidth/canvas.contentSize.width
+        //        let vertScale = adjustedHeight/canvas.bounds.size.height
+        //        let horiScale = adjustedWidth/canvas.bounds.size.width
+        let scale = min(horiScale, vertScale)
+        
+        print(adjustedWidth, adjustedHeight)
+        print("Drawing Bounds: \(scale)")
+        
+        var zoomScale = scale
+        
+        if (zoomScale < canvas.minimumZoomScale){
+            zoomScale = canvas.minimumZoomScale
+        } else if (zoomScale > 1) {
+            zoomScale = 1
+        }
+        
+        print("Drawing Bounds: \(zoomScale)")
+        
+        canvas.zoomScale = zoomScale
+    }
+    
+    func updateCanvasContentSize(){
+        //this get's drawn twice. At the beginning and when a drawing is added to the canvas
+        gridView.frame.size = canvas.contentSize
+        let viewportBounds = canvas.bounds
+        
+        // no drawing
+        if canvas.drawing.bounds.size == .zero {
+            let leftInset = (canvas.contentSize.width - viewportBounds.width)/2
+            let topInset = (canvas.contentSize.height - viewportBounds.height)/2
+            canvas.contentOffset = CGPoint(x: leftInset * 0.5, y: topInset * 0.5)
+            print("Drawing Bounds: nothing")
+            print("Drawing Bounds: \(canvas.contentOffset)")
+        } else {
+            let realContentBounds = CGRect(x: canvas.drawing.bounds.origin.x,
+                                           y: canvas.drawing.bounds.origin.y,
+                                           width: canvas.drawing.bounds.width,
+                                           height: canvas.drawing.bounds.height)
+            
+            // consider the useful content as the (drawing + margins) + the viewport, so that the drawing is not
+            // scrolled upon updating the content insets, while the user draws something
+            let finalContentBounds = realContentBounds.union(viewportBounds)
+            let imageWidth = canvas.drawing.bounds.width
+            let imageHeight = canvas.drawing.bounds.height
+            let targetWidth = canvas.bounds.width
+            let targetHeight =  canvas.bounds.height
+            
+            let imageAspectRatio = imageWidth/imageHeight
+            let targetAspectRatio = targetWidth/targetHeight
+            
+            var adjustedWidth = targetWidth
+            var adjustedHeight = targetHeight
+            
+            if (imageAspectRatio > targetAspectRatio){
+                adjustedHeight = targetWidth / imageAspectRatio
+            } else if (imageAspectRatio < targetAspectRatio){
+                adjustedWidth = targetHeight * imageAspectRatio
+            }
+            
+            print("Drawing Bounds: Canvas \(adjustedWidth) \(adjustedHeight)")
+            canvas.contentOffset = CGPoint(x: (finalContentBounds.origin.x - ((imageWidth * canvas.zoomScale)/2)), y: finalContentBounds.origin.y - ((imageHeight * canvas.zoomScale)/2))
+            //canvas.contentOffset = CGPoint(x: viewportBounds.origin.x, y: viewportBounds.origin.y)
+            print("Drawing Bounds: something start")
+            print("Drawing Bounds: \(viewportBounds)")
+            print("Drawing Bounds: \(realContentBounds)")
+            print("Drawing Bounds: \(finalContentBounds)")
+            print("Drawing Bounds: \(canvas.contentSize)")
+            print("Drawing Bounds: \(canvas.contentOffset)")
+            print("Drawing Bounds: something end")
+        }
+        
+    }
+    
+    func formatDateToBeauty(thisDate: Date) -> String{
+        let dateFormatterPrint = DateFormatter()
+        //dateFormatterPrint.locale = Locale(identifier: "en_US")
+        dateFormatterPrint.timeZone = TimeZone.current
+        dateFormatterPrint.dateFormat = "MMddyy_hh_mm"
+        return dateFormatterPrint.string(from: thisDate)
+    }
+    
     @IBAction func goBackHome(_ sender: Any) {
-        saveDrawing()
         navigationController?.popToRootViewController(animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        UIApplication.shared.isIdleTimerDisabled = false
         super.viewWillDisappear(animated)
-        //saveDrawing()
     }
     
     @IBAction func clearDrawing(_ sender: Any) {
@@ -205,10 +273,16 @@ class DrawingViewController: BaseViewController {
             if (new_canvas){
                 let drawing = canvas.drawing.dataRepresentation()
                 let drawingString = drawing.base64EncodedString()
-                storeHelper.saveDrawing(delegate: delegate, drawing: DrawingModel(dateModified: Date(),
-                                                                                  dateCreated: Date(),
-                                                                                  drawingEntity: drawingString,
-                                                                                  tag: tagLabel.currentTitle ?? "unsorted"))
+                let creationDate = Date()
+                let modifiedDate = Date()
+                let drawingModelToSave = DrawingModel(dateModified: modifiedDate,
+                                                      dateCreated: creationDate,
+                                                      drawingEntity: drawingString,
+                                                      tag: tagLabel.currentTitle ?? "unsorted")
+                storeHelper.saveDrawing(delegate: delegate, drawing: drawingModelToSave)
+                //we just saved this canvas, so let's make it editable
+                new_canvas = false
+                editingDrawingModel = drawingModelToSave
             } else {
                 editingDrawingModel.dateModified = Date()
                 let drawing = canvas.drawing.dataRepresentation()
@@ -246,39 +320,12 @@ class DrawingViewController: BaseViewController {
         }
     }
     
-    
-    func updateCanvasContentSize(){
-        gridView.frame.size = canvas.contentSize
-        
-        print(gridView.frame)
-        let viewportBounds = canvas.bounds
-
-                // no drawing
-                if canvas.drawing.bounds.size == .zero {
-                    let leftInset = (canvas.contentSize.width - viewportBounds.width)/2
-                    let topInset = (canvas.contentSize.height - viewportBounds.height)/2
-                    canvas.contentOffset = CGPoint(x: leftInset, y: topInset)
-                } else {
-                    //let realContentBounds = canvas.drawing.bounds.inset(by: margin)
-                    let realContentBounds = CGRect(x: canvas.drawing.bounds.origin.x,
-                                                   y: canvas.drawing.bounds.origin.y,
-                                                   width: canvas.drawing.bounds.width,
-                                                   height: canvas.drawing.bounds.height)
-
-                    // consider the useful content as the (drawing + margins) + the viewport, so that the drawing is not
-                    // scrolled upon updating the content insets, while the user draws something
-                    let finalContentBounds = realContentBounds.union(viewportBounds)
-                    canvas.contentOffset = CGPoint(x: finalContentBounds.origin.x, y: finalContentBounds.origin.y)
-                }
-                return
-    }
-    
 }
 
 extension DrawingViewController: PKCanvasViewDelegate{
     
     func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-        //updateCanvasContentSize()
+        saveDrawing()
     }
     
     func canvasViewDidFinishRendering(_ canvasView: PKCanvasView) {
@@ -290,33 +337,31 @@ extension DrawingViewController: PKCanvasViewDelegate{
                 name = name.lowercased()
                 
                 let dst = URL(fileURLWithPath: NSTemporaryDirectory().appending("lupe_" + name + ".pdf"))
-                    // outputs as Data
-                    do {
-                        let data = try PDFGenerator.generated(by: canvasToPrint)
-                        try data.write(to: dst, options: .atomic)
-                        let av = UIActivityViewController(activityItems: [dst], applicationActivities: nil)
-                        av.popoverPresentationController?.sourceView = shareButton
-                        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-                        exportingCanvas = false
-                    } catch (let error) {
-                        print(error)
-                    }
+                // outputs as Data
+                do {
+                    let data = try PDFGenerator.generated(by: canvasToPrint)
+                    try data.write(to: dst, options: .atomic)
+                    let av = UIActivityViewController(activityItems: [dst], applicationActivities: nil)
+                    av.popoverPresentationController?.sourceView = shareButton
+                    UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+                    exportingCanvas = false
+                } catch (let error) {
+                    print(error)
+                }
             }
         }
     }
-
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        //view.didZoom(to: canvasView.zoomScale)
-    }
-
+    
     func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
         return false
     }
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return gridView
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("Drawing Bounds: \(canvas.contentOffset)")
     }
-
+    
+    
 }
 
 

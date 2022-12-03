@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CTJ-63-Itb">
-    <device id="ipad10_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CTJ-63-Itb">
+    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -31,92 +31,148 @@
             <objects>
                 <viewController storyboardIdentifier="DrawingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="DrawingViewController" customModule="Lupe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nd0-eg-4y8" userLabel="CanvasParent">
-                                <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k0D-cb-JOj">
-                                <rect key="frame" x="908" y="28.5" width="80" height="29"/>
+                                <rect key="frame" x="474" y="1106" width="94" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ftK-Y5-26I"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" title="#PushPress">
+                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <state key="normal" title="#Create">
                                     <color key="titleColor" systemColor="labelColor"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16" scale="medium" weight="bold"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="showDrawingTagForm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="plI-aP-8qC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VT7-0i-Rkt" userLabel="Lock Button">
-                                <rect key="frame" x="1092" y="32" width="26" height="22.5"/>
+                                <rect key="frame" x="700" y="1106" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="yhl-cu-Io0"/>
+                                    <constraint firstAttribute="height" constant="40" id="f1v-jy-YwX"/>
+                                    <constraint firstAttribute="width" constant="40" id="yhl-cu-Io0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="16"/>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" image="lock.open" catalog="system">
+                                <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                <state key="normal">
                                     <color key="titleColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="lock.open" catalog="system" symbolScale="small"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="regular"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="lockAndUnlockCanvas:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Yf-cM-xeQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7N-Nr-N4N" userLabel="Grid Button">
-                                <rect key="frame" x="1050" y="32" width="26" height="22.5"/>
+                                <rect key="frame" x="644" y="1106" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="zwl-lv-l1W"/>
+                                    <constraint firstAttribute="height" constant="40" id="cJD-sQ-6iM"/>
+                                    <constraint firstAttribute="width" constant="40" id="zwl-lv-l1W"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="16"/>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" image="grid" catalog="system">
+                                <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                <state key="normal">
                                     <color key="titleColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="grid" catalog="system" symbolScale="small"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="regular"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXs-2K-v4u" userLabel="Share Button">
-                                <rect key="frame" x="1008" y="30.5" width="26" height="25.5"/>
+                                <rect key="frame" x="588" y="1106" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="RFG-Uc-YLV"/>
+                                    <constraint firstAttribute="width" constant="40" id="RFG-Uc-YLV"/>
+                                    <constraint firstAttribute="height" constant="40" id="cYg-tU-3w2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="16"/>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" image="square.and.arrow.up" catalog="system">
+                                <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                <state key="normal">
                                     <color key="titleColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="small"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="regular"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="shareSaveDrawing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4qP-h2-IMe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eth-6l-cKw" userLabel="Clear Button">
-                                <rect key="frame" x="1134" y="30.5" width="22" height="25"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eth-6l-cKw" userLabel="Clear Button">
+                                <rect key="frame" x="756" y="1106" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="DUi-sG-HAg"/>
+                                    <constraint firstAttribute="height" constant="40" id="PAO-Od-jW4"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="16"/>
                                 <color key="tintColor" systemColor="labelColor"/>
-                                <state key="normal" image="trash.fill" catalog="system">
+                                <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                <state key="normal">
                                     <color key="titleColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="trash.fill" catalog="system" symbolScale="small"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="regular"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="clearDrawing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GCy-hc-0do"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="clip" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MzJ-bi-dfD">
-                                <rect key="frame" x="24" y="18" width="80" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MzJ-bi-dfD">
+                                <rect key="frame" x="24" y="1106" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="USC-Eo-Obs"/>
-                                    <constraint firstAttribute="width" constant="80" id="e9a-oZ-hkQ"/>
+                                    <constraint firstAttribute="height" constant="40" id="USC-Eo-Obs"/>
+                                    <constraint firstAttribute="width" constant="40" id="e9a-oZ-hkQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="16"/>
                                 <color key="tintColor" systemColor="labelColor"/>
+                                <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
                                 <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" image="chevron.backward" catalog="system">
+                                <state key="normal">
                                     <color key="titleColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="small"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18" scale="medium" weight="bold"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="goBackHome:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pi0-ro-MdQ"/>
                                 </connections>
@@ -128,9 +184,9 @@
                             <constraint firstItem="VT7-0i-Rkt" firstAttribute="leading" secondItem="I7N-Nr-N4N" secondAttribute="trailing" constant="16" id="0QI-NN-moC"/>
                             <constraint firstItem="VT7-0i-Rkt" firstAttribute="centerY" secondItem="MzJ-bi-dfD" secondAttribute="centerY" id="EDE-aw-iUX"/>
                             <constraint firstItem="Nd0-eg-4y8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="H6j-nA-eXh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MzJ-bi-dfD" secondAttribute="bottom" constant="14" id="Lus-90-AuN"/>
                             <constraint firstAttribute="bottom" secondItem="Nd0-eg-4y8" secondAttribute="bottom" id="NaZ-Qn-2f6"/>
                             <constraint firstAttribute="trailing" secondItem="Nd0-eg-4y8" secondAttribute="trailing" id="QZb-1d-QCF"/>
-                            <constraint firstItem="MzJ-bi-dfD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="TXc-57-8aR"/>
                             <constraint firstItem="k0D-cb-JOj" firstAttribute="centerY" secondItem="MzJ-bi-dfD" secondAttribute="centerY" id="VRw-4M-J4P"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Eth-6l-cKw" secondAttribute="trailing" constant="24" id="WkT-Gq-JdW"/>
                             <constraint firstItem="Eth-6l-cKw" firstAttribute="leading" secondItem="VT7-0i-Rkt" secondAttribute="trailing" constant="16" id="Zf1-HY-k9u"/>
@@ -183,11 +239,11 @@
             <objects>
                 <viewController id="oSi-Vy-YUX" customClass="HomeViewController" customModule="Lupe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pUB-hQ-Ari">
-                        <rect key="frame" x="0.0" y="0.0" width="1180" height="820"/>
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5Ai-vp-uFv">
-                                <rect key="frame" x="0.0" y="122" width="1180" height="698"/>
+                                <rect key="frame" x="0.0" y="143" width="820" height="1037"/>
                                 <color key="backgroundColor" name="tableBgColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="KOY-Kr-4yx" customClass="UICollectionViewLeftAlignedLayout"/>
                                 <cells>
@@ -260,7 +316,7 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfu-N5-974" customClass="UIShadowView" customModule="Lupe" customModuleProvider="target">
-                                <rect key="frame" x="1096" y="726" width="54" height="54"/>
+                                <rect key="frame" x="736" y="1086" width="54" height="54"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES8-Jh-jQJ">
                                         <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
@@ -313,16 +369,16 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3B-A8-CSY">
-                                <rect key="frame" x="0.0" y="0.0" width="1180" height="122"/>
+                                <rect key="frame" x="0.0" y="24" width="820" height="119"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi Bez" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1x-ar-nMh">
-                                        <rect key="frame" x="26" y="50" width="1128" height="31"/>
-                                        <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="26"/>
+                                        <rect key="frame" x="26" y="50" width="768" height="28"/>
+                                        <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMX-e2-90N">
-                                        <rect key="frame" x="1128" y="20" width="36" height="36"/>
+                                        <rect key="frame" x="768" y="20" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="B3p-Ga-40k"/>
                                             <constraint firstAttribute="width" constant="36" id="KdI-p4-3h1"/>
@@ -336,13 +392,13 @@
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hope you are having a great morning?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2J-Ll-bVw">
-                                        <rect key="frame" x="26" y="87" width="1128" height="17"/>
+                                        <rect key="frame" x="26" y="84" width="768" height="17"/>
                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sov-tu-gqz">
-                                        <rect key="frame" x="1084" y="20" width="36" height="36"/>
+                                        <rect key="frame" x="724" y="20" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="Dhh-tL-R68"/>
                                             <constraint firstAttribute="height" constant="36" id="Opt-tX-mbR"/>
@@ -395,6 +451,222 @@
             </objects>
             <point key="canvasLocation" x="739.83050847457628" y="88.536585365853654"/>
         </scene>
+        <!--New Drawing Controller-->
+        <scene sceneID="R7f-om-8Sv">
+            <objects>
+                <viewController storyboardIdentifier="NewDrawingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1p6-Qv-4YK" customClass="NewDrawingController" customModule="Lupe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JRG-iQ-zDJ">
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.5" maximumZoomScale="4" translatesAutoresizingMaskIntoConstraints="NO" id="DWX-sW-zYu">
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0N-UM-bab" userLabel="CanvasHolder" customClass="UIShadowView" customModule="Lupe" customModuleProvider="target">
+                                        <rect key="frame" x="200" y="200" width="5000" height="3280"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erR-ym-ZZJ" customClass="PKCanvasView">
+                                                <rect key="frame" x="0.0" y="0.0" width="5000" height="3280"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="5000" id="4pZ-rE-3Bs"/>
+                                            <constraint firstAttribute="bottom" secondItem="erR-ym-ZZJ" secondAttribute="bottom" id="Fps-Fc-jNa"/>
+                                            <constraint firstItem="erR-ym-ZZJ" firstAttribute="top" secondItem="Q0N-UM-bab" secondAttribute="top" id="nSH-yj-aa9"/>
+                                            <constraint firstAttribute="trailing" secondItem="erR-ym-ZZJ" secondAttribute="trailing" id="qUT-zu-gjL"/>
+                                            <constraint firstItem="erR-ym-ZZJ" firstAttribute="leading" secondItem="Q0N-UM-bab" secondAttribute="leading" id="qYP-y4-csz"/>
+                                            <constraint firstAttribute="height" constant="3280" id="xse-XF-yvn"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="kanbanInside"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Q0N-UM-bab" secondAttribute="trailing" constant="200" id="SoF-hs-AxR"/>
+                                    <constraint firstItem="Q0N-UM-bab" firstAttribute="leading" secondItem="DWX-sW-zYu" secondAttribute="leading" constant="200" id="Uv3-2I-Zkx"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q0N-UM-bab" secondAttribute="bottom" constant="200" id="fJU-IK-JNF"/>
+                                    <constraint firstItem="Q0N-UM-bab" firstAttribute="top" secondItem="DWX-sW-zYu" secondAttribute="top" constant="200" id="i9y-mP-cvX"/>
+                                </constraints>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xop-ho-Ywv">
+                                <rect key="frame" x="474" y="1106" width="94" height="40"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="gxW-me-O1B"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <state key="normal" title="#Create">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16" scale="medium" weight="bold"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w08-Md-DOI" userLabel="Lock Button">
+                                <rect key="frame" x="700" y="1106" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="YdW-C6-eaj"/>
+                                    <constraint firstAttribute="height" constant="40" id="vHe-tH-itS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="16"/>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                <state key="normal">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="lock.open" catalog="system" symbolScale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="regular"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bc-pL-tJv" userLabel="Grid Button">
+                                <rect key="frame" x="644" y="1106" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="I8G-cy-MtL"/>
+                                    <constraint firstAttribute="width" constant="40" id="eDp-82-6DQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="16"/>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                <state key="normal">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="grid" catalog="system" symbolScale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="regular"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6b-6n-Ppw" userLabel="Share Button">
+                                <rect key="frame" x="588" y="1106" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="gmp-Cr-DfS"/>
+                                    <constraint firstAttribute="width" constant="40" id="pmH-m8-xni"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="16"/>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                <state key="normal">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="square.and.arrow.up" catalog="system" symbolScale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="regular"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wI-II-RDg" userLabel="Clear Button">
+                                <rect key="frame" x="756" y="1106" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="5D0-eR-Fos"/>
+                                    <constraint firstAttribute="width" constant="40" id="rHD-6o-cEo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="16"/>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                <state key="normal">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="trash.fill" catalog="system" symbolScale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="medium" weight="regular"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FMK-SE-eNV">
+                                <rect key="frame" x="24" y="1106" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="eXe-w9-udP"/>
+                                    <constraint firstAttribute="width" constant="40" id="y7b-0g-Pna"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Rubik-Medium" family="Rubik" pointSize="16"/>
+                                <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="chevron.backward" catalog="system" symbolScale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18" scale="medium" weight="bold"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kmJ-QN-rtw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DWX-sW-zYu" firstAttribute="leading" secondItem="JRG-iQ-zDJ" secondAttribute="leading" id="1W9-Dt-OvW"/>
+                            <constraint firstItem="6wI-II-RDg" firstAttribute="centerY" secondItem="FMK-SE-eNV" secondAttribute="centerY" id="Cy8-QB-80b"/>
+                            <constraint firstAttribute="bottom" secondItem="DWX-sW-zYu" secondAttribute="bottom" id="JpE-bX-Sfl"/>
+                            <constraint firstItem="4Bc-pL-tJv" firstAttribute="centerY" secondItem="FMK-SE-eNV" secondAttribute="centerY" id="Kce-ja-kqg"/>
+                            <constraint firstItem="6wI-II-RDg" firstAttribute="leading" secondItem="w08-Md-DOI" secondAttribute="trailing" constant="16" id="NO1-Ey-foQ"/>
+                            <constraint firstItem="l6b-6n-Ppw" firstAttribute="centerY" secondItem="FMK-SE-eNV" secondAttribute="centerY" id="Xmv-fP-XIp"/>
+                            <constraint firstItem="kmJ-QN-rtw" firstAttribute="bottom" secondItem="FMK-SE-eNV" secondAttribute="bottom" constant="14" id="b1t-DL-CN0"/>
+                            <constraint firstItem="4Bc-pL-tJv" firstAttribute="leading" secondItem="l6b-6n-Ppw" secondAttribute="trailing" constant="16" id="bPx-cP-70d"/>
+                            <constraint firstAttribute="trailing" secondItem="DWX-sW-zYu" secondAttribute="trailing" id="dyz-gX-Ox6"/>
+                            <constraint firstItem="kmJ-QN-rtw" firstAttribute="trailing" secondItem="6wI-II-RDg" secondAttribute="trailing" constant="24" id="i3N-2a-O3J"/>
+                            <constraint firstItem="l6b-6n-Ppw" firstAttribute="leading" secondItem="Xop-ho-Ywv" secondAttribute="trailing" constant="20" id="n36-Au-LBL"/>
+                            <constraint firstItem="w08-Md-DOI" firstAttribute="leading" secondItem="4Bc-pL-tJv" secondAttribute="trailing" constant="16" id="r96-aN-Mfe"/>
+                            <constraint firstItem="DWX-sW-zYu" firstAttribute="top" secondItem="JRG-iQ-zDJ" secondAttribute="top" id="vMy-gL-cAp"/>
+                            <constraint firstItem="w08-Md-DOI" firstAttribute="centerY" secondItem="FMK-SE-eNV" secondAttribute="centerY" id="w9l-46-fAU"/>
+                            <constraint firstItem="Xop-ho-Ywv" firstAttribute="centerY" secondItem="FMK-SE-eNV" secondAttribute="centerY" id="wq1-VL-Ucs"/>
+                            <constraint firstItem="FMK-SE-eNV" firstAttribute="leading" secondItem="kmJ-QN-rtw" secondAttribute="leading" constant="24" id="xKd-SS-ESP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hBF-8a-zAT"/>
+                    <connections>
+                        <outlet property="canvas" destination="erR-ym-ZZJ" id="Iks-wu-66a"/>
+                        <outlet property="canvasHolder" destination="Q0N-UM-bab" id="THT-Ha-TXB"/>
+                        <outlet property="imageViewBottomConstraint" destination="fJU-IK-JNF" id="RCl-RK-rmi"/>
+                        <outlet property="imageViewLeadingConstraint" destination="Uv3-2I-Zkx" id="uBO-st-KYF"/>
+                        <outlet property="imageViewTopConstraint" destination="i9y-mP-cvX" id="VGw-VQ-dg2"/>
+                        <outlet property="imageViewTrailingConstraint" destination="SoF-hs-AxR" id="sQs-63-7ZT"/>
+                        <outlet property="parentScroll" destination="DWX-sW-zYu" id="Lb9-SY-I9v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n5I-P1-FBS" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2139" y="89"/>
+        </scene>
     </scenes>
     <resources>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
@@ -408,6 +680,9 @@
         <namedColor name="bgColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="kanbanInside">
+            <color red="0.94499999284744263" green="0.95300000905990601" blue="0.97299998998641968" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="tableBgColor">
             <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -416,6 +691,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
