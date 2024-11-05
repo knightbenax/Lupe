@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CTJ-63-Itb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CTJ-63-Itb">
     <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -243,7 +243,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5Ai-vp-uFv">
-                                <rect key="frame" x="0.0" y="143" width="820" height="1037"/>
+                                <rect key="frame" x="0.0" y="113" width="820" height="1067"/>
                                 <color key="backgroundColor" name="tableBgColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="KOY-Kr-4yx" customClass="UICollectionViewLeftAlignedLayout"/>
                                 <cells>
@@ -369,10 +369,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3B-A8-CSY">
-                                <rect key="frame" x="0.0" y="24" width="820" height="119"/>
+                                <rect key="frame" x="0.0" y="24" width="820" height="89"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi Bez" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1x-ar-nMh">
-                                        <rect key="frame" x="26" y="50" width="768" height="28"/>
+                                        <rect key="frame" x="26" y="20" width="768" height="28"/>
                                         <fontDescription key="fontDescription" name="Rubik-Bold" family="Rubik" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -392,7 +392,7 @@
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hope you are having a great morning?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2J-Ll-bVw">
-                                        <rect key="frame" x="26" y="84" width="768" height="17"/>
+                                        <rect key="frame" x="26" y="54" width="768" height="17"/>
                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -415,7 +415,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="G2J-Ll-bVw" secondAttribute="trailing" constant="26" id="06S-4p-KBO"/>
                                     <constraint firstItem="H1x-ar-nMh" firstAttribute="leading" secondItem="h3B-A8-CSY" secondAttribute="leading" constant="26" id="3Cl-5D-u0C"/>
-                                    <constraint firstItem="H1x-ar-nMh" firstAttribute="top" secondItem="h3B-A8-CSY" secondAttribute="top" constant="50" id="5su-Tj-vQa"/>
+                                    <constraint firstItem="H1x-ar-nMh" firstAttribute="top" secondItem="h3B-A8-CSY" secondAttribute="top" constant="20" id="5su-Tj-vQa"/>
                                     <constraint firstAttribute="trailing" secondItem="H1x-ar-nMh" secondAttribute="trailing" constant="26" id="IH0-7c-xQy"/>
                                     <constraint firstItem="G2J-Ll-bVw" firstAttribute="top" secondItem="H1x-ar-nMh" secondAttribute="bottom" constant="6" id="Kc3-Az-8P1"/>
                                     <constraint firstItem="mMX-e2-90N" firstAttribute="top" secondItem="h3B-A8-CSY" secondAttribute="top" constant="20" id="N6R-Rz-rmU"/>
@@ -669,14 +669,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chevron.backward" catalog="system" width="96" height="128"/>
-        <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="grid" catalog="system" width="128" height="112"/>
+        <image name="chevron.backward" catalog="system" width="97" height="128"/>
+        <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="grid" catalog="system" width="128" height="113"/>
         <image name="lock.open" catalog="system" width="128" height="110"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
-        <image name="trash.fill" catalog="system" width="121" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>
+        <image name="trash.fill" catalog="system" width="117" height="128"/>
         <namedColor name="bgColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
